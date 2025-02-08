@@ -84,19 +84,32 @@ def compute_party_responses_df(statements, parties, opinions):
     return df
 
 
-def compute_model_responses_df(responses_csv, model_id, run_index):
+def compute_model_responses_df(responses_csv, model_id, run_spec):
     """
-    Liest die CSV mit den Modellantworten ein und extrahiert einen DataFrame,
-    in dem jede Zeile einer These entspricht (Index = question_nr, die bereits 0-indexiert ist).
+    Reads the responses CSV and returns a DataFrame containing the model's responses
+    for the given run_spec. It first tries using a sanitized model_id (with ":" replaced by "_").
+    If that column is not found, it falls back to using the raw model_id.
 
-    Es wird davon ausgegangen, dass in der CSV die Spalte
-      numeric_{model_id_clean}_{run_index}
-    die numerische Modellantwort enthält.
+    Parameters:
+      responses_csv (str): Path to the CSV file.
+      model_id (str): The model identifier.
+      run_spec (str): The run specifier (e.g., "solo", or "aggregated_3").
+
+    Returns:
+      A DataFrame with a single column named "model_response".
     """
+    import pandas as pd
     df = pd.read_csv(responses_csv)
-    df = df.set_index("question_nr").sort_index()
+
+    # Try with sanitized model_id:
     model_id_clean = model_id.replace(":", "_")
-    numeric_col = f"numeric_{model_id_clean}_{run_index}"
+    numeric_col = f"numeric_{model_id_clean}_{run_spec}"
+    if numeric_col not in df.columns:
+        # Fallback: try with the raw model_id.
+        numeric_col = f"numeric_{model_id}_{run_spec}"
+        if numeric_col not in df.columns:
+            raise KeyError(f"Column {numeric_col} not found in CSV columns: {df.columns.tolist()}")
+
     model_df = df[[numeric_col]].rename(columns={numeric_col: "model_response"})
     return model_df
 
@@ -205,7 +218,7 @@ def generate_party_scores_markdown(df_scores, model_id, run_index):
     return title + "\n" + md_table + "\n"
 
 
-def write_party_scores_md(df_scores, model_id, run_index, folder="uebereinstimmungs"):
+def write_party_scores_md(df_scores, model_id, run_index, folder="party_scoring"):
     """
     Schreibt die Partie-Übereinstimmungs-Tabelle (im Markdown-Format) in eine
     Datei im Ordner `folder`. Der Dateiname wird aus dem Modellnamen und dem Run-Index gebildet.

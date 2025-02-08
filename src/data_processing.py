@@ -139,7 +139,7 @@ Die folgende Tabelle fasst die Ergebnisse zusammen – die Emojis repräsentiere
     print(f"{readme_filename} has been updated.")
 
 
-def write_party_scores_md(scores_df, model_id, run_index, folder="uebereinstimmungs"):
+def write_party_scores_md(scores_df, model_id, run_index, folder="party_scoring"):
     """
     Writes the scores DataFrame to a Markdown file and returns the file path.
 
@@ -149,7 +149,7 @@ def write_party_scores_md(scores_df, model_id, run_index, folder="uebereinstimmu
       - scores_df: DataFrame containing the scores (columns: points, max_points, percentage)
       - model_id: Model name (e.g., "gpt-4o-mini")
       - run_index: Run index (e.g., 1)
-      - folder: Folder where the Markdown file will be saved (default: "uebereinstimmungs")
+      - folder: Folder where the Markdown file will be saved (default: "party_scoring")
 
     The file name is composed of the cleaned model name and the run index.
     """
