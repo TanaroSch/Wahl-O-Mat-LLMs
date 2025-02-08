@@ -55,10 +55,10 @@ Die folgende Tabelle fasst die Ergebnisse zusammen – die Emojis repräsentiere
 
 ## Model Agreement Scores
 
-- [gpt-4o-mini_run_1_scores.md](uebereinstimmungs/gpt-4o-mini_run_1_scores.md)
-- [llama3.2_latest_run_1_scores.md](uebereinstimmungs/llama3.2_latest_run_1_scores.md)
-- [o3-mini_run_2_scores.md](uebereinstimmungs/o3-mini_run_2_scores.md)
-- [gpt-4o_run_1_scores.md](uebereinstimmungs/gpt-4o_run_1_scores.md)
-- [claude-3-5-haiku-20241022_run_1_scores.md](uebereinstimmungs/claude-3-5-haiku-20241022_run_1_scores.md)
-- [claude-3-5-sonnet-20241022_run_1_scores.md](uebereinstimmungs/claude-3-5-sonnet-20241022_run_1_scores.md)
-- [phi4_14b_run_1_scores.md](uebereinstimmungs/phi4_14b_run_1_scores.md)
+- [gpt-4o-mini_run_1_scores.md](notebooks/uebereinstimmungs/gpt-4o-mini_run_1_scores.md)
+- [llama3.2_latest_run_1_scores.md](notebooks/uebereinstimmungs/llama3.2_latest_run_1_scores.md)
+- [o3-mini_run_2_scores.md](notebooks/uebereinstimmungs/o3-mini_run_2_scores.md)
+- [gpt-4o_run_1_scores.md](notebooks/uebereinstimmungs/gpt-4o_run_1_scores.md)
+- [claude-3-5-haiku-20241022_run_1_scores.md](notebooks/uebereinstimmungs/claude-3-5-haiku-20241022_run_1_scores.md)
+- [claude-3-5-sonnet-20241022_run_1_scores.md](notebooks/uebereinstimmungs/claude-3-5-sonnet-20241022_run_1_scores.md)
+- [phi4_14b_run_1_scores.md](notebooks/uebereinstimmungs/phi4_14b_run_1_scores.md)

@@ -83,7 +83,7 @@ def update_readme(csv_filename="responses.csv", statements=None, readme_filename
     df = pd.read_csv(csv_filename)
     answer_cols = [col[len("answer_"):] for col in df.columns if col.startswith("answer_")]
     numeric_cols = ["numeric_" + identifier for identifier in answer_cols if "numeric_" + identifier in df.columns]
-    #numeric_cols = [col for col in df.columns if col.startswith("numeric_")]
+    # numeric_cols = [col for col in df.columns if col.startswith("numeric_")]
 
     id_to_label = {item["id"]: item["label"] for item in statements}
 
@@ -106,7 +106,7 @@ def update_readme(csv_filename="responses.csv", statements=None, readme_filename
             return "❌"
         elif ans_int == answer_mapping['neutral']:
             return "⚪"
-        
+
         print(f"Unknown answer: {ans}")
         return "⚪"
 
@@ -180,10 +180,15 @@ def update_readme_with_score_links_replace(score_files, readme_filename="README.
 
     If the section exists, it is replaced; otherwise, it is appended to the end of the README.
     In the process, backslashes in the file paths are converted to forward slashes.
+    Now that the README is one level up, the links will be prefixed with "notebooks/".
     """
     new_section = "## Model Agreement Scores\n\n"
     for file_path in score_files:
+        # Convert backslashes to forward slashes
         file_path = file_path.replace("\\", "/")
+        # Prepend the 'notebooks/' directory if not already present
+        if not file_path.startswith("notebooks/"):
+            file_path = "notebooks/" + file_path
         filename = os.path.basename(file_path)
         new_section += f"- [{filename}]({file_path})\n"
 
